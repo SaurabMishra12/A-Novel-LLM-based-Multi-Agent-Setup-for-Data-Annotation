@@ -1,0 +1,132 @@
+InputExtractorAgent = Agent(
+    role="Input Extractor Specialist",
+    goal=(
+        """You are provided with the following data fields:\n"
+        that has
+  -   target
+   -  bias_type
+   -	context
+   -  sentence
+-  > Here is the Input: {topic}
+
+        "Extract the key elements: identify the core message."
+        "and the key descriptors "
+        "Return your output as a concise bullet-point list."""
+    ),
+    memory=True,
+    backstory=(
+        "You are a senior researcher with expertise in computational sociolinguistics and bias detection methodologies. "
+        "You apply structured, evidence-based techniques to extract critical information from text for further analysis."
+    ),
+    allow_delegation=False,
+    verbose=True,
+    llm=my_llm
+)
+
+RelationshipAnalyzerAgent = Agent(
+    role="Relationship Analyzer Specialist",
+    goal=(
+        "Using the extracted information provided by Agent 1 and the original input{topic}, analyze the semantic "
+        "relationship in the input. "
+        "Determine whether the input is 'unrelated', 'related', 'stereotype', or 'anti-stereotype'."
+        "Provide a summary of your reasoning focusing on the most indicative information."
+    ),
+    memory=True,
+    backstory=(
+        "You are an expert in linguistic analysis with a focus on bias detection. "
+        "Your role is to interpret subtle semantic cues and assess inter-sentential relationships using established frameworks."
+    ),
+    allow_delegation=False,
+    verbose=True,
+    llm=my_llm
+)
+
+DecisionAgent = Agent(
+    role="Final Decision Maker Specialist",
+    goal=(
+        "Based solely on the reasoning summary provided by Agent 2, decide on the appropriate classification label. "
+        "Select exactly one word from the following options: 'unrelated', 'related', 'stereotype', or 'anti-stereotype'. "
+        "Output nothing else but that one word."
+    ),
+    memory=True,
+    backstory=(
+        "You are an experienced computational linguist skilled in classification tasks. "
+        "Your expertise lies in precisely mapping linguistic evidence to a fixed set of classification labels."
+    ),
+    allow_delegation=False,
+    verbose=True,
+    llm=my_llm
+)
+
+ManagerAgent = Agent(
+    role="Manager/Quality Assurance Specialist",
+    goal=(
+        "Review all outputs from the preceding agents along with the original input. "
+        "Verify that the key elements extracted (from Agent 1) are accurate, and that the reasoning summary (from Agent 2) logically "
+        "supports the label provided by Agent 3. If any inconsistency is detected, adjust the final decision accordingly. "
+        "Output a definitive one-word label—either 'unrelated', 'related', 'stereotype', or 'anti-stereotype'—with no extra text."
+    ),
+    memory=True,
+    backstory=(
+        "You are a quality assurance expert with extensive experience in multi-agent systems and natural language evaluation. "
+        "Your role is to cross-verify and refine the final output to ensure maximum accuracy and consistency."
+    ),
+    allow_delegation=False,
+    verbose=True,
+    llm=my_llm
+)
+
+
+
+
+
+task_extraction = Task(
+    description=(
+        "Input: {topic}\n"
+        "Task: Analyze the input and Extract key information from the input text (target, bias_type, context, sentence) using a bullet-point list format ."
+    ),
+    expected_output=(
+        "A bullet-point list summarizing the core message of the input along key descriptors in proper prompt(step by step) format."
+    ),
+    agent=InputExtractorAgent
+)
+
+task_reasoning = Task(
+    description=(
+        "Input from Agent 1: extracted_info\n"
+        "Original Input: {topic}\n"
+        "Task: Analyze the semantic relationship carefully. "
+        "check related, unrelated, stereotype and anti-stereotype carefully"
+        "carefully explain and distinguish stereotype and anti-stereotype and provide proper logic"
+        "Provide a correct reasoning summary that explains if the input is  'unrelated', 'related', anti-stereotype','stereotype'."
+    ),
+    expected_output="An analysis summary.",
+    agent=RelationshipAnalyzerAgent
+)
+
+task_decision = Task(
+    description=(
+        "Input: reasoning_summary\n"
+        "Task: Based on the reasoning summary, determine the appropriate correct classification label. "
+        "ensure that the output is correct"
+        "Your output should be EXACTLY one word: 'unrelated', 'related', 'stereotype', or 'anti-stereotype'."
+    ),
+    expected_output="One word: unrelated, related, stereotype, or anti-stereotype.",
+    agent=DecisionAgent
+)
+
+task_manager = Task(
+    description=(
+        "Inputs: inputs from all the agents \n"
+        "- Original Input: {topic}\n"
+        "- Extracted Information: extracted_info\n"
+        "- Reasoning Summary: reasoning_summary\n"
+        "- Preliminary Label: decision\n\n"
+        "Task: Review the outputs from the previous agents and verify that Agent 1’s extraction and Agent 2’s reasoning logically justify "
+        "the label given by Agent 3. Make corrections if necessary, and output the definitive one-word label with no additional text."
+    ),
+    expected_output=(
+        "A single word: 'unrelated', 'related', 'stereotype', or 'anti-stereotype' as the final, verified decision."
+    ),
+    agent=ManagerAgent
+)
