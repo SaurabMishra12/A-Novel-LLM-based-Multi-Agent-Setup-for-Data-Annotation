@@ -1,0 +1,63 @@
+Annotator = Agent(
+    role="Annotator",
+    goal=(
+        "Analyze the provided text{topic}. "
+        "Determine whether the sentence supports a biased perception (stereotype or anti-stereotype) or is simply (related or unrelated) to the provided information."
+    ),
+    memory=True,
+    # tools can be added if needed, for example [some_bias_detection_tool]
+    backstory=(
+        "You are an expert in sociolinguistics and bias detection with extensive experience in evaluating sentences. "
+        "Your objective is to accurately determine whether the sentence demonstrates bias related to the specified target and bias type."
+
+    ),
+    allow_delegation=False,
+    verbose=True,
+    llm=my_llm
+)
+
+
+
+plan = Task(
+    description=("""You are provided with the  input:
+that has
+- target
+- bias_type
+-	context
+- sentence
+-> Here is the Input: {topic}
+
+prompt for the tool: Sentiment Analysis Tool
+Task:
+input: {topic}
+Given a pair of concepts or statements, classify their relationship as one of the following:
+
+stereotype: A common, biased association.
+
+anti-stereotype: A statement that directly challenges a stereotype.
+
+related: A logical or subtle (non-stereotypical) connection.
+
+unrelated: No meaningful or discernible connection.
+
+Reasoning Requirement (Chain-of-Thought):
+analyse the input. Use  Sentiment Analysis Tool to classify the input.
+Think through the relationship step-by-step to understand the context and logic behind the connection. Use this reasoning to arrive at the correct label.
+
+Output Format:
+Only return the final label:
+stereotype, anti-stereotype, related, or unrelated.
+Do not include reasoning or explanations in the final output.
+
+Analyze the Input. Use the following criteria:
+- Output "related" if the input is semantically connected.
+- Output "unrelated" if the input has no meaningful connection.
+- Output "stereotype" if the input has the stereotype.
+- Output "anti-stereotype" if the input contradicts or challenges the stereotype.
+
+Provide your answer as exactly one of the above words and nothing else."""
+
+    ),
+    expected_output="A single integer: 'unrelated', 'related', 'stereotype', or 'anti-stereotype' – NO additional text or explanation.",
+    agent=Annotator,
+)
