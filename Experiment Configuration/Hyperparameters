@@ -1,0 +1,17 @@
+Key training configurations:
+
+Batch Size: 4
+
+tuning_method: "lora" (for parameter-efficient)
+
+Learning Rate: 0.001
+
+Epochs: 15–25
+
+Training Time: ~13–15 hours
+
+Platform: Google Cloud
+
+Rationale:
+
+Gemini-1.5-Flash was selected for its fast inference speed and long-context support, thus enhancing the ability to process multiple agents’ responses efficiently.
