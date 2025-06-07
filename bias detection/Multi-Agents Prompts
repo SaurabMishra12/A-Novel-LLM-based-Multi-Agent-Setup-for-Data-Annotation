@@ -21,71 +21,10 @@ Final Decision Maker Specialist:
 You are a highly experienced linguistic classifier. Based solely on the explanation provided by the Relationship Analyzer Specialist, your task is 
 to make a clear and objective final decision. Output a single word that best captures the nature of the input {topic} from among the following: 
 unrelated, related, stereotype, or anti-stereotype.If the statement has been classified as 'Unrelated' by the previous Agent, 
-then this would be your final label.Else,if the statements are related, Your judgment should reflect confidence and clarity, avoiding any elaboration or repetition of 
+Then this would be your final label. Else, if the statements are related, then use your judgment to classify them into one of the remaining three labels. 
+Your judgment should reflect confidence and clarity, avoiding any elaboration or repetition of 
 the reasoning. Your sole output should be the final label in lowercase.
 
 
 
-InputExtractorAgent = Agent(
-    role="Input Extractor Specialist",
-    goal="Get key elements (target, bias_type, context, sentence) from the input'{topic}' and give them in a bullet-point list.",
-    backstory="An expert in computational sociolinguistics expert who extracts important information from text.",
-    memory=True,
-    allow_delegation=False,
-    verbose=True,
-    llm=my_llm
-)
 
-RelationshipAnalyzerAgent = Agent(
-    role="Relationship Analyzer Specialist",
-    goal="Analyze semantic relations in the input'{topic}' by using extracted info. Classify as 'unrelated', 'related', 'stereotype', or 'anti-stereotype' with proper explaination.",
-    backstory="An expert in linguistic analysis and bias detection.",
-    memory=True,
-    allow_delegation=False,
-    verbose=True,
-    llm=my_llm
-)
-
-DecisionAgent = Agent(
-    role="Final Decision Maker Specialist",
-    goal="Based on explaination from the Relationship Analyzer, give  a single-word output: 'unrelated', 'related', 'stereotype', or 'anti-stereotype'.",
-    backstory="An expert in classification tasks with 20 years of experience based on linguistic evidence.",
-    memory=True,
-    allow_delegation=False,
-    verbose=True,
-    llm=my_llm
-)
-
-ManagerAgent = Agent(
-    role="Manager/Quality Assurance Specialist",
-    goal="Review all the outputs from the agents for enhancing accuracy and proper working, then atlast provide a final, single-word output.",
-    backstory="A quality assurance expert for multi-agent NLP systems.",
-    memory=True,
-    allow_delegation=False,
-    verbose=True,
-    llm=my_llm
-)
-
-task_extraction = Task(
-    description="Given an input '{topic}', extract key information (target, bias_type, context, sentence).",
-    expected_output="A bullet-point list of extracted information.",
-    agent=InputExtractorAgent
-)
-
-task_reasoning = Task(
-    description="Analyze the semantic relations in the original input '{topic}' and extracted info to determine the type (unrelated, related, stereotype, anti-stereotype) with a logical summary.",
-    expected_output="deep analysis summary with reasoning.",
-    agent=RelationshipAnalyzerAgent
-)
-
-task_decision = Task(
-    description="From the detailed summary, label a final single-word classification.",
-    expected_output="One word: 'unrelated', 'related', 'stereotype', or 'anti-stereotype'.",
-    agent=DecisionAgent
-)
-
-task_manager = Task(
-    description="Review all prior outputs accordingly with the original input '{topic}'. Verify workflow and give a final, corrected one-word label.",
-    expected_output="A single, verified word: 'unrelated', 'related', 'stereotype', or 'anti-stereotype' as the final, verified decision Nothing else.",
-    agent=ManagerAgent
-)
