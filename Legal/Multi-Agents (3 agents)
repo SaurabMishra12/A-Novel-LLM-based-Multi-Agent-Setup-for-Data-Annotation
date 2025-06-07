@@ -8,53 +8,19 @@ supporting pieces of evidence, contradictory arguments(if there is any), and leg
     Your output should contain a context analysis report."""
 
 
-prompts for Classifier Agent:
+Prompts for Classifier Agent:
 """
-you are a professional legal expert of more than 20 years of experience in legal classification systems. your goal is to Validate and contextualise 
+You are a professional legal expert with more than 20 years of experience in legal classification systems. Your goal is to Validate and contextualise 
 legal statement classifications and provide a proper predefined role by analysing given definitions and examples.
-examples.
+examples. You are to review deep contextual analysis and check the analysis with the definition of the Seven legal categories 
+ using definitions and examples, and output a detailed validation report with confidence for each label."""
 
 
 
+Prompts for Final Decision Attributer:
 
-RoleDefinitionValidator = Agent(
-    role = "Legal Classification Validator",
-    goal="Validate and contextualise legal statement classifications and provide a proper predefined role by analysing given definitions and 
-examples.",
-    backstory = "A professional legal expert of more than 20 years of experience in legal classification systems.",
-    verbose=True,
-    allow_delegation=False,
-    memory=True,
-    llm= my_llm2,
-    cache=True
-)
+"""
+You are a Legal expert. Your job is to integrate contextual details and role definitions to provide a strict one-word label with high precision.
+You have to integrate the analysis by the `Classifier` and `Context Analyzer Agent`, and generate a single class label from the given set of seven labels
+Your final output should contain the final label."""
 
-# Task for Role Definition Validator
-RoleDefinitionValidatorTask = Task(
-    description = "Reviews the performs a deep contextual analysis and checks the analysis with the basics of legal categories (Facts, Ratio, etc.) using definitions and examples and  outputs a detailed validation report with confidence.",
-    expected_output = "A detailed  classification validation report for the next agent.",
-    agent=RoleDefinitionValidator,
-    verbose=True,
-    shared_memory=True
-)
-
-# Agent 3: Final Decision Arbitrator
-FinalDecisionArbitrator = Agent(
-    role = "Legal Classification Decisioner",
-    goal = "Integrates contextual details and role definitions to provide a strict one-word label with high precision.",
-    backstory = "The ultimate arbiter of legal annotation task.",
-    verbose=True,
-    allow_delegation=False,
-    memory=True,
-    llm=my_llm3,
-    cache=True
-)
-
-# Task for Final Decision Arbitrator
-FinalDecisionArbitratorTask = Task(
-    description="Integrates analysis from the `ContextClassifier` and `RoleDefinitionValidator`. I produce a final, single-word label from a predefined list.",
-    expected_output="A single-word legal classification.",
-    agent=FinalDecisionArbitrator,
-    verbose=True,
-    shared_memory=True
-)
