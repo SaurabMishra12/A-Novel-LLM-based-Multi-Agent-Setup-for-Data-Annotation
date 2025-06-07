@@ -1,7 +1,7 @@
-UnifiedLegalClassifier = Agent(
-    role = "Comprehensive Legal Statement Analyzer and Classifier",
-    goal="Analyze the court case:'{case}' and classify the '{sentence}' using information.",
-    backstory = "A professional legal annotator of more than 20 years of experience designed for deep analysis and annotation of legal statements.",
+Legal Annotator = Agent(
+    role = "Legal Statement Analyzer and annotator",
+    goal = "Perform multiple steps with accuracy, analyse the court case:'{case}' and also classify the given sentence: '{sentence}' using all the information you have been provided with.",
+    backstory = "A professional legal annotator of more than 20 years of experience in annotation of legal statements.",
     verbose=True,
     allow_delegation=False,
     memory=True,
@@ -9,10 +9,10 @@ UnifiedLegalClassifier = Agent(
     cache=True
 )
 
-UnifiedLegalClassificationTask = Task(
-    description = "A multi-stage step by step analysis process with proper reasoning for a sentence to annotate: '{sentence}' from a legal court case:'{case}'. The process involves step-by-step reasoning, analysing facts, ratio decidendi, lower court rulings, precedents, arguments, and statutes to arrive at a final classification. Includes a few shots enhanced prompt with detail description of each role.",
-    expected_output = "A single-word legal classification from a predefined list (Facts, Ratio of the decision, etc.).",
-    agent = UnifiedLegalClassifier,
+Legal Annotation Task = Task(
+    description = "A multi stage step by step analysis process with appropriate  reasoning given for the task of sentence annotation: sentence to be annotated: '{sentence}' from a legal court case:'{case}'. It includes step by step reasoning, analysing (facts, ratio decidendi, decision of lower courts, precedents, arguments, decision of the court and statutes) to arrive at a final label. Includes a few shots enhanced prompt with detailed description of each role with proper examples and COT induced style.",
+    expected_output = "A single word legal label from a list (Facts, Ratio of the decision, etc.) and Nothing else.",
+    agent = Legal Annotator,
     verbose=True,
     shared_memory=True
 )
