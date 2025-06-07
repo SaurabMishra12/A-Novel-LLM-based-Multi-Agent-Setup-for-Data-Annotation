@@ -1,4 +1,4 @@
-Prompt for Single Agent:
+Sample Prompt for Single Agent:
 """
 You are a senior legal expert with over 20 years of experience in document review, legal classification, and judicial interpretation. 
 Analyze the given sentence {sentence} from the court case {case} in the following structured steps:
