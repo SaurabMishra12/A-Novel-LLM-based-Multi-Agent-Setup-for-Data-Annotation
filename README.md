@@ -21,11 +21,31 @@ This repository contains the supplementary materials and other details for the p
 │   ├── Dataset Legal/
 │   └── Test Dataset.csv
 ├── Legal/
-│   ├── Multi-Agents prompts
-│   └── Single Agent prompts
+│   ├── 👥Multi-Agents prompts
+│   └── 👤Single Agent prompts
 ├── Bias Detection/
-│   ├── Multi-Agents Prompts
-│   └── Single Agent Prompts
+│   ├──👥Multi-Agents Prompts
+│   └──👤Single Agent Prompts
 ├── Example of Debate with Judge setup/
 └── Multi-Agent Debate Example/
 ```
+
+🧾 Files & Descriptions
+
+📁 Datasets: This file contains the datasets used in the setups.
+
+📁 Legal: This directory contains all the sample prompts used in the Legal experimental setups.
+
+📁 Bias Detection: This directory contains all the sample prompts used in the Bias detection experimental setups.
+
+📌 Example of Debate with Judge setup
+
+📌 Multi-Agent Debate Example
+
+
+
+
+
+
+
+
