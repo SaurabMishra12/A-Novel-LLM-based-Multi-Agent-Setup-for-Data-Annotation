@@ -30,7 +30,7 @@ This repository contains the supplementary materials and other details for the p
 └── Multi-Agent Debate Example/
 ```
 
-🧾 Files & Descriptions
+### 🧾 Files & Descriptions
 
 📁 Datasets: This file contains the datasets used in the setups.
 
