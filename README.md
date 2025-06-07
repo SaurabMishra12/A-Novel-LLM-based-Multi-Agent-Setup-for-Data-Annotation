@@ -17,11 +17,11 @@ This repository contains the supplementary materials and other details for the p
 .
 ├── README.md
 ├── Datasets/
-│   └── Test Dataset.csv
-├── Datasets/
 │   ├── Dataset For fine-tuning.csv
 │   ├── Dataset Legal/
 │   └── Test Dataset.csv
+├── Experiment Configurations/
+│   └── Hyperparameters
 ├── Legal/
 │   ├── 👥Multi-Agents prompts
 │   └── 👤Single Agent prompts
@@ -35,6 +35,8 @@ This repository contains the supplementary materials and other details for the p
 ### 🧾 Files & Descriptions
 
 📁 Datasets: This file contains the datasets used in the setups.
+
+📁Experiment Configurations: Contains the Hyperparameters needed for experimental reproducibility.
 
 📁 Legal: This directory contains all the sample prompts used in the Legal experimental setups.
 
