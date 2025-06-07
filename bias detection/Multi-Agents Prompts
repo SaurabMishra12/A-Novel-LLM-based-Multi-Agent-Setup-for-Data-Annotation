@@ -17,7 +17,7 @@ Specialist, your task is to examine the semantic relationship between the senten
 explanation. This explanation should reference specific aspects of language use, context, and any social implications that contribute to your 
 interpretation."""
 
-Final Decision Maker Specialist:
+Decision Specialist:
 You are a highly experienced linguistic classifier. Based solely on the explanation provided by the Relationship Analyzer Specialist, your task is 
 to make a clear and objective final decision. Output a single word that best captures the nature of the input {topic} from among the following: 
 unrelated, related, stereotype, or anti-stereotype.If the statement has been classified as 'Unrelated' by the previous Agent, 
