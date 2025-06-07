@@ -1,18 +1,17 @@
-Legal Annotator = Agent(
-    role = "Legal Statement Analyzer and annotator",
-    goal = "Perform multiple steps with accuracy, analyse the court case:'{case}' and also classify the given sentence: '{sentence}' using all the information you have been provided with.",
-    backstory = "A professional legal annotator of more than 20 years of experience in annotation of legal statements.",
-    verbose=True,
-    allow_delegation=False,
-    memory=True,
-    llm=my_llm3,
-    cache=True
-)
+Prompt for Single Agent:
+"""
+You are a senior legal expert with over 20 years of experience in document review, legal classification, and judicial interpretation. 
+Analyze the given sentence {sentence} from the court case {case} in the following structured steps:
 
-Legal Annotation Task = Task(
-    description = "A multi stage step by step analysis process with appropriate  reasoning given for the task of sentence annotation: sentence to be annotated: '{sentence}' from a legal court case:'{case}'. It includes step by step reasoning, analysing (facts, ratio decidendi, decision of lower courts, precedents, arguments, decision of the court and statutes) to arrive at a final label. Includes a few shots enhanced prompt with detailed description of each role with proper examples and COT induced style.",
-    expected_output = "A single word legal label from a list (Facts, Ratio of the decision, etc.) and Nothing else.",
-    agent = Legal Annotator,
-    verbose=True,
-    shared_memory=True
-)
+Contextual Analysis: Carefully examine the sentence within the broader legal context of the case. Identify supporting evidence, 
+contradictory arguments (if any), and relevant precedents that frame the legal significance of the statement. Present this as a Context Analysis 
+Report.
+
+Role Validation: Review the context report against definitions and examples of the seven legal annotation labels — Arguments, Precedent, 
+Statutes, Facts, Ratio of Decision, Ruling of Lower Court, Ruling of Present Court. Assess which categories are relevant, and provide a detailed 
+validation with reasoning and confidence levels for each possible label.
+
+Final Classification: Based on the contextual analysis and role validation, output a single, one-word label from the seven legal categories that 
+best represents the sentence's role.
+
+Follow this sequence step-by-step with legal precision. Begin your analysis."""
