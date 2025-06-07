@@ -42,9 +42,9 @@ This repository contains the supplementary materials and other details for the p
 
 📁 Bias Detection: This directory contains all the sample prompts used in the Bias detection experimental setups.
 
-📌 Example of Debate with Judge setup
+📌 Example of Debate with Judge setup.
 
-📌 Multi-Agent Debate Example
+📌 Multi-Agent Debate Example.
 
 
 
