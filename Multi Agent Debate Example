@@ -1,0 +1,27 @@
+Input sentence-"The direction to her was that she should enjoy the entire properties including the outstandings etc and these shall thereafter pass to her daughters."
+
+Round1:
+ 
+Annotator 1: Label – Ratio of Decision
+Annotator 2: Label – Facts
+
+Round2:
+Annotator 1:"This sentence reflects the core reasoning of the court’s legal conclusion regarding the nature of property enjoyment and its subsequent succession. It defines how the court interpreted the testator’s intention, forming the basis of the legal decision. Thus, it constitutes part of the ratio decidendi."
+
+Annotator 2:"The sentence merely outlines what the testator directed with respect to the use and devolution of the property. It recounts what was stated, without any interpretive legal principle being applied. Hence, it should be considered a statement of fact."
+
+Round3:(Debate Round1):
+
+Annotator 1:"While I understand the view that this is narrative, its presence in the judgment is not merely descriptive. It is cited to justify the court’s reasoning about succession rights, which qualifies it as a legal principle, not a mere fact."
+
+Annotator 2: "You argue that the statement contributes to the court’s rationale, but there’s no explicit legal rule articulated. It lacks normative force and is more descriptive of what the testator intended, which is characteristic of 'Facts'."
+
+Round4:(Debate round2):
+
+Annotator 1: "You raise a valid point regarding the absence of explicit legal language. Upon re-reading, the sentence seems to report the testator's directive rather than declare the court's interpretive principle. It may be better classified as 'Facts'."
+
+Annotator 2: "Your position was thoughtful, but I maintain that the absence of interpretive or prescriptive content confirms that this is a factual statement. I appreciate the reconsideration."
+
+Final result:Facts(Incorrect)
+
+Correct label:Ratio of Decision
