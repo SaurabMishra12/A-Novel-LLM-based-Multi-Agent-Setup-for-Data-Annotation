@@ -1,26 +1,26 @@
-ContextClassifier = Agent(
-    role = "Legal Context Analyser",
-    goal = "Perform a detailed analysis of documents from the court case to output precise and detailed contextual information.",
-    backstory = "A professional legal document reviewer of experience more than 20 yearswith exceptional attention to detail.",
-    verbose=True,
-    allow_delegation=False,
-    memory=True,
-    llm=my_llm1,
-    cache=True
-)
 
-# Task for Context Classifier
-ContextClassifierTask = Task(
-    description = "Analyses a '{sentence}' from a legal court case '{case}' in order to extract the exact contextual information, with proper supporting pieces of evidence, contradictory arguments(if there is any), and legal precedents keeping in mind that it is for legal annotation.",
-    expected_output = "A detailed contextual analysis document for the next agent.",
-    agent=ContextClassifier,
-    verbose=True,
-    shared_memory=True
-)
+Prompts for Context Analyser Agent:
+"""
+You are a professional legal document reviewer with experience more than 20 years and exceptional attention to detail. You are to
+perform a detailed analysis of documents from the court case to output precise and detailed contextual information.you have to analyse a sentence
+'{sentence}' from a legal court case '{case}' in order to extract the exact contextual information, with proper 
+supporting pieces of evidence, contradictory arguments(if there is any), and legal precedents keeping in mind that it is for legal annotation.",
+    Your output should contain a context analysis report."""
+
+
+prompts for Classifier Agent:
+"""
+you are a professional legal expert of more than 20 years of experience in legal classification systems. your goal is to Validate and contextualise 
+legal statement classifications and provide a proper predefined role by analysing given definitions and examples.
+examples.
+
+
+
 
 RoleDefinitionValidator = Agent(
     role = "Legal Classification Validator",
-    goal="Validate and contextualise legal statement classifications and provide a proper predefined role by analysing given definitions and examples.",
+    goal="Validate and contextualise legal statement classifications and provide a proper predefined role by analysing given definitions and 
+examples.",
     backstory = "A professional legal expert of more than 20 years of experience in legal classification systems.",
     verbose=True,
     allow_delegation=False,
