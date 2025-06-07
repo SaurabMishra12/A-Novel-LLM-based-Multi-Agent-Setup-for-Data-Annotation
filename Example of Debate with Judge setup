@@ -1,0 +1,37 @@
+Debate with Judge setup:
+
+Input sentence:"They will of course be entitled to enjoy the balance left after payment of rent."
+
+Round1:
+
+Annotator 1 (Label: Precedent):"This sentence reflects the court’s reliance on an earlier judgment which clarified entitlements after rent deductions. The phrasing ‘they will of course be entitled’ implies that this entitlement is already established by prior authority, not derived freshly by the current bench."
+
+Annotator 2 (Label: Ruling of Present Court):"The sentence clearly issues a conclusion about the parties' rights regarding the balance of the property. It appears within the reasoning section and indicates the court's present directive on entitlement, making it part of the ruling of the current bench."
+
+Round2:
+
+Annotator 1 (responding to Annotator 2):
+
+"While the sentence appears in the reasoning, the language does not originate from this bench’s independent legal analysis. The phrase ‘of course’ signals an acceptance of a previously articulated principle, which this bench is merely reiterating. That aligns with the role of precedent."
+
+
+Annotator 2 (responding to Annotator 1):
+
+"You suggest that the sentence refers to existing law, but the court’s statement here seems declaratory in nature—asserting what the beneficiaries are now entitled to. It does not cite a prior case directly and reads more like a present adjudicative statement."
+
+Round3:
+
+Annotator 1 (responding to Annotator 2’s Round 2):
+
+"That the court does not name the precedent explicitly does not negate its reliance on one. Courts often restate established positions without citation. The rhetorical framing—‘of course’—reflects a judicial habit of reaffirming settled law, not making a fresh ruling. Hence, it is precedent."
+
+
+Annotator 2 (responding to Annotator 1’s Round 2):
+
+"However, the court’s role here is active. It applies the entitlement to a specific present context, rather than passively reiterating earlier rulings. The judgment contextualizes the entitlement for the parties in this case, suggesting it is part of the present ruling."
+
+Judges Decision: "Upon evaluating the arguments presented, Annotator 2's reasoning better aligns with the immediate declarative tone and contextual specificity of the sentence. Despite Annotator 1’s argument about implicit precedent, the absence of a cited authority and the situational nature of the entitlement lead me to classify the sentence under Ruling of Present Court."
+
+Final Label:Ruling of Present Court(Incorrect)
+
+Correct Label:Precedent
