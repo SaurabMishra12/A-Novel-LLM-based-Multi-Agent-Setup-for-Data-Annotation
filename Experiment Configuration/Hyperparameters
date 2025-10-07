@@ -1,17 +1,78 @@
-Key training configurations:
+Fine-Tuning Configuration
 
-Batch Size: 4
+Base Model: Llama-3.1–8B–Instruct
 
-tuning_method: "lora" (for parameter-efficient)
+Frameworks: Hugging Face Transformers (v4.50.0), PEFT
 
-Learning Rate: 0.001
+Fine-tuning Method: Parameter-Efficient Fine-Tuning using LoRA
 
-Epochs: 15–25
+Task Type: Causal Language Modeling (CAUSAL_LM)
 
-Training Time: ~13–15 hours
+Precision: bfloat16
 
-Platform: Google Cloud
+Computation: Partially accelerated using GPUs on Google Cloud Platform (GCP)
 
-Rationale:
+LoRA Settings
 
-Gemini-1.5-Flash was selected for its fast inference speed and long-context support, thus enhancing the ability to process multiple agents’ responses efficiently.
+Rank 
+𝑟
+=
+16
+r=16
+
+Scaling factor 
+𝛼
+=
+32
+α=32
+
+Dropout = 0.05
+
+Bias = none
+
+fan_in_fan_out = false
+
+Adapters applied to:
+q_proj, k_proj, v_proj, o_proj, up_proj, down_proj, gate_proj
+
+Model Architecture
+
+Number of layers: 32
+
+Hidden size: 4096
+
+Intermediate size: 14,336
+
+Attention heads: 32 (8 key-value heads)
+
+Head dimension: 128
+
+Rotary embeddings:
+
+Max context length = 131,072
+
+Scaling factor = 8.0
+
+Type = llama3
+
+Dropout:
+
+Attention dropout = 0.0
+
+MLP bias = false
+
+Initialization range: 0.02
+
+RMSNorm epsilon: 1e-5
+
+Tokenizer
+
+Vocabulary size: 128,257
+
+BOS token: 128000
+
+EOS tokens: [128001, 128008, 128009]
+
+
+All LoRA and model hyperparameters are reported to support reproducibility.
+Dataset and infrastructure details are intentionally withheld to prevent unauthorised replication.
